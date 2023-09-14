@@ -64,4 +64,36 @@ public class Remedio {
     public void ativar(){
         this.ativo = true;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public Via getVia() {
+        return via;
+    }
+
+    public String getLote() {
+        return lote;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public LocalDate getValidade() {
+        return validade;
+    }
+
+    public Laboratorio getLaboratorio() {
+        return laboratorio;
+    }
 }
