@@ -17,6 +17,7 @@ public class ProfessorController {
     @Autowired
     private ProfessorRepository repository;
 
+    @CrossOrigin
     @PostMapping
     @Transactional
     public ResponseEntity<DadosDetalhamentoProfessor> cadastrar(@RequestBody @Valid DadosCadastroProfessor dados, UriComponentsBuilder uriBuilder){
@@ -27,12 +28,14 @@ public class ProfessorController {
         return ResponseEntity.created(uri).body(new DadosDetalhamentoProfessor(professor));
     }
 
+    @CrossOrigin
     @GetMapping
     public ResponseEntity<List<DadosListagemProfessor>> listar(){
         var lista = repository.findAll().stream().map(DadosListagemProfessor::new).toList();
         return ResponseEntity.ok(lista);
     }
 
+    @CrossOrigin
     @PutMapping
     @Transactional
     public ResponseEntity<DadosDetalhamentoProfessor> atualizar(@RequestBody @Valid DadosAtualizarProfessor dados){
@@ -42,6 +45,7 @@ public class ProfessorController {
         return ResponseEntity.ok(new DadosDetalhamentoProfessor(professor));
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity<Void> excluir(@PathVariable Long id){
@@ -50,6 +54,7 @@ public class ProfessorController {
         return ResponseEntity.noContent().build();
     }
 
+    @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity<DadosDetalhamentoProfessor> detalhar(@PathVariable Long id){
         var professor = repository.getReferenceById(id);
