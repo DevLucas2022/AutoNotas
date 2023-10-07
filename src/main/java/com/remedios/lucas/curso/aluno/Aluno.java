@@ -4,6 +4,7 @@ package com.remedios.lucas.curso.aluno;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.*;
+import org.hibernate.validator.constraints.UniqueElements;
 
 @Table(name = "alunos")
 @Entity(name = "alunos")
@@ -12,20 +13,25 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Aluno {
+public class  Aluno {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nome;
     private String curso;
-    private String email;
 
+    @UniqueElements()
+    private String ra;
+
+    private String email;
+    private String senha;
 
     public Aluno(DadosCadastroAluno dados){
         this.nome = dados.nome();
         this.curso = dados.curso();
         this.email = dados.email();
+        this.ra = dados.ra();
+        this.senha = dados.senha();
     }
 
     public void atualizarInformacoes(@Valid DadosAtualizarAluno dados){
@@ -37,6 +43,9 @@ public class Aluno {
         }
         if(dados.curso()!=null){
             this.curso = dados.curso();
+        }
+        if(dados.ra()!=null){
+            this.ra = dados.ra();
         }
     }
 

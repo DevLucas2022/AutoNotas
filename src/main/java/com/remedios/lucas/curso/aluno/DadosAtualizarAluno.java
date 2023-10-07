@@ -6,7 +6,8 @@ public record DadosAtualizarAluno(
         @NotNull Long id,
         String nome,
         String email,
-        String curso
-
+        String curso,
+        String senha,
+        String ra
         ){
 }

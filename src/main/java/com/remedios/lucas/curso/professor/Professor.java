@@ -24,11 +24,14 @@ public class Professor {
     private String telefone;
     private String email;
 
+    private String senha;
+
     public Professor(DadosCadastroProfessor dados){
         this.nome = dados.nome();
         this.dataNascimento = dados.dataNascimento();
         this.telefone = dados.telefone();
         this.email = dados.email();
+        this.senha = dados.senha();
     }
 
     public void atualizarInformacoes(@Valid DadosAtualizarProfessor dados){
@@ -40,6 +43,9 @@ public class Professor {
         }
         if(dados.email()!=null){
             this.email = dados.email();
+        }
+        if(dados.senha()!=null){
+            this.senha = dados.senha();
         }
     }
     public Long getId() {

@@ -7,8 +7,11 @@ import java.time.LocalDate;
 
 public record DadosCadastroProfessor (
     @NotBlank String nome,
-    @Past  LocalDate dataNascimento,
+    @NotBlank @Past  LocalDate dataNascimento,
     @NotBlank String telefone,
-    @NotBlank String email){
+    @NotBlank String email,
+    @NotBlank String senha)
+{
+
 
 }

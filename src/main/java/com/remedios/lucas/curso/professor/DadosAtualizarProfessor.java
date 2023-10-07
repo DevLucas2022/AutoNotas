@@ -9,6 +9,7 @@ public record DadosAtualizarProfessor(
         String nome,
         String telefone,
         LocalDate dataNascimento,
-        String email
+        String email,
+        String senha
 ) {
 }
