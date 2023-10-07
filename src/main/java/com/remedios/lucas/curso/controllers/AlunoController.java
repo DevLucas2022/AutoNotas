@@ -1,6 +1,7 @@
 package com.remedios.lucas.curso.controllers;
 
 import com.remedios.lucas.curso.aluno.*;
+import com.remedios.lucas.curso.professor.DadosAtualizarProfessor;
 import com.remedios.lucas.curso.professor.DadosDetalhamentoProfessor;
 import com.remedios.lucas.curso.professor.DadosListagemProfessor;
 import jakarta.transaction.Transactional;
@@ -19,6 +20,16 @@ public class AlunoController {
     @Autowired
     private AlunoRepository repository;
 
+
+    @CrossOrigin
+    @PutMapping
+    @Transactional
+    public ResponseEntity<DadosDetalhamentoAluno> atualizar(@RequestBody @Valid DadosAtualizarAluno dados){
+        var aluno = repository.getReferenceById(dados.id());
+        aluno.atualizarInformacoes(dados);
+
+        return ResponseEntity.ok(new DadosDetalhamentoAluno(aluno));
+    }
 
     @CrossOrigin
     @PostMapping

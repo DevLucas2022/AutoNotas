@@ -1,10 +1,10 @@
 package com.remedios.lucas.curso.aluno;
 
 
+import com.remedios.lucas.curso.professor.DadosAtualizarProfessor;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.*;
-import org.hibernate.validator.constraints.UniqueElements;
 
 @Table(name = "alunos")
 @Entity(name = "alunos")
@@ -20,10 +20,12 @@ public class  Aluno {
     private String nome;
     private String curso;
 
-    @UniqueElements()
+    @Column(unique = true)
     private String ra;
 
+    @Column(unique = true)
     private String email;
+
     private String senha;
 
     public Aluno(DadosCadastroAluno dados){
