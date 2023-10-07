@@ -21,7 +21,11 @@ public class Professor {
 
     private String nome;
     private LocalDate dataNascimento;
+
+    @Column(unique = true)
     private String telefone;
+
+    @Column(unique = true)
     private String email;
 
     private String senha;
