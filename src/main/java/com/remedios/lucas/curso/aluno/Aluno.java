@@ -1,18 +1,11 @@
 package com.remedios.lucas.curso.aluno;
 
 
-import com.remedios.lucas.curso.professor.DadosAtualizarProfessor;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
-import lombok.*;
 
 @Table(name = "alunos")
 @Entity(name = "alunos")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
 public class  Aluno {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,12 +21,24 @@ public class  Aluno {
 
     private String senha;
 
+    public Aluno(Long id, String nome, String curso, String ra, String email, String senha) {
+        this.id = id;
+        this.nome = nome;
+        this.curso = curso;
+        this.ra = ra;
+        this.email = email;
+        this.senha = senha;
+    }
+
     public Aluno(DadosCadastroAluno dados){
         this.nome = dados.nome();
         this.curso = dados.curso();
         this.email = dados.email();
         this.ra = dados.ra();
         this.senha = dados.senha();
+    }
+
+    public Aluno() {
     }
 
     public void atualizarInformacoes(@Valid DadosAtualizarAluno dados){
@@ -65,5 +70,33 @@ public class  Aluno {
 
     public String getEmail() {
         return email;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setCurso(String curso) {
+        this.curso = curso;
+    }
+
+    public void setRa(String ra) {
+        this.ra = ra;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getRa() {
+        return ra;
     }
 }

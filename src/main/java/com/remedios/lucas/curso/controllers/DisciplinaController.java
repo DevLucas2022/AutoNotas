@@ -56,7 +56,7 @@ public class DisciplinaController {
     }
 
     @CrossOrigin
-    @GetMapping("/{id_disciplina}")
+    @GetMapping("/{id}")
     public ResponseEntity<DadosDetalhamentoDisciplina> detalhar(@PathVariable Long id){
         var disciplina = repository.getReferenceById(id);
 

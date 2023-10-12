@@ -2,19 +2,12 @@ package com.remedios.lucas.curso.disciplinas;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.remedios.lucas.curso.aluno.DadosAtualizarAluno;
 import com.remedios.lucas.curso.professor.Professor;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
-import lombok.*;
 
 @Table(name="disciplinas")
 @Entity(name="disciplinas")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id_disciplina")
 public class Disciplina {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +23,15 @@ public class Disciplina {
     public Disciplina(DadosCadastroDisciplina dados){
         this.nome_disciplina = dados.nome_disciplina();
         this.id_professor = dados.id_professor();
+    }
+
+    public Disciplina(Long id_disciplina, String nome_disciplina, Professor id_professor) {
+        this.id_disciplina = id_disciplina;
+        this.nome_disciplina = nome_disciplina;
+        this.id_professor = id_professor;
+    }
+
+    public Disciplina() {
     }
 
     public void atualizarInformacoes(@Valid DadosAtualizarDisciplina dados){
@@ -57,4 +59,15 @@ public class Disciplina {
         return id_professor;
     }
 
+    public void setId_disciplina(Long id_disciplina) {
+        this.id_disciplina = id_disciplina;
+    }
+
+    public void setNome_disciplina(String nome_disciplina) {
+        this.nome_disciplina = nome_disciplina;
+    }
+
+    public void setId_professor(Professor id_professor) {
+        this.id_professor = id_professor;
+    }
 }
