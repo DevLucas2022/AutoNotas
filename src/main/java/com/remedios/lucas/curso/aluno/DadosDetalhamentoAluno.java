@@ -5,16 +5,14 @@ public record DadosDetalhamentoAluno (
     String nome,
     String ra,
     String curso,
-    String email,
-    String senha
+    String email
 ){
     public DadosDetalhamentoAluno(Aluno aluno){
         this(aluno.getId(),
                 aluno.getNome(),
                 aluno.getRa(),
                 aluno.getCurso(),
-                aluno.getEmail(),
-                aluno.getSenha());
+                aluno.getEmail());
     }
 
 }
