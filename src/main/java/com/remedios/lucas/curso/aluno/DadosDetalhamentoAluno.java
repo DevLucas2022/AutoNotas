@@ -6,7 +6,10 @@ public record DadosDetalhamentoAluno (
     String ra,
     String curso,
     String email,
-    String senha
+    String logradouro,
+    String bairro,
+    String localidade,
+    String cep
 ){
     public DadosDetalhamentoAluno(Aluno aluno){
         this(aluno.getId(),
@@ -14,7 +17,10 @@ public record DadosDetalhamentoAluno (
                 aluno.getRa(),
                 aluno.getCurso(),
                 aluno.getEmail(),
-                aluno.getSenha());
+                aluno.getLogradouro(),
+                aluno.getBairro(),
+                aluno.getLocalidade(),
+                aluno.getCep());
     }
 
 }

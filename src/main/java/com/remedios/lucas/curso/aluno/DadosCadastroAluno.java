@@ -9,5 +9,7 @@ public record DadosCadastroAluno (
     @NotBlank String curso,
     @NotBlank String email,
     @NotBlank String senha,
-    @NotBlank String ra)
+    @NotBlank String ra,
+    @NotBlank String cep)
+
 {}

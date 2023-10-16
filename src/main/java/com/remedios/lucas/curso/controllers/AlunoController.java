@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -45,8 +46,12 @@ public class AlunoController {
     @GetMapping
     public ResponseEntity<List<DadosListagemAluno>> listar(){
         var lista = repository.findAll().stream().map(DadosListagemAluno::new).toList();
+
         return ResponseEntity.ok(lista);
     }
+
+
+    @GetMapping("/{cep}")
 
     @CrossOrigin
     @DeleteMapping("/{id}")
@@ -61,7 +66,6 @@ public class AlunoController {
     @GetMapping("/{id}")
     public ResponseEntity<DadosExibirAluno> detalhar(@PathVariable Long id){
         var aluno = repository.getReferenceById(id);
-
         return ResponseEntity.ok(new DadosExibirAluno(aluno));
     }
 }

@@ -26,14 +26,18 @@ public class  Aluno {
     @Column(unique = true)
     private String email;
 
+    private String cep;
     private String senha;
-
+    private String logradouro;
+    private String bairro;
+    private String localidade;
     public Aluno(DadosCadastroAluno dados){
         this.nome = dados.nome();
         this.curso = dados.curso();
         this.email = dados.email();
         this.ra = dados.ra();
         this.senha = dados.senha();
+        this.cep = dados.cep();
     }
 
     public void atualizarInformacoes(@Valid DadosAtualizarAluno dados){
@@ -68,4 +72,24 @@ public class  Aluno {
     }
 
     public String getRa() { return ra; }
+
+    public String getLogradouro() {
+        return logradouro;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public String getLocalidade() {
+        return localidade;
+    }
+    @Override
+    public String toString() {
+        return "Endereco{" + "logradouro=" + logradouro + ", bairro=" + bairro + ", localidade=" + localidade + '}';
+    }
+
+    public String getCep() {
+        return cep;
+    }
 }
