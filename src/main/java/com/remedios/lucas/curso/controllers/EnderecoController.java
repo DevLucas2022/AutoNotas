@@ -15,5 +15,7 @@ import java.io.IOException;
 public class EnderecoController {
     @GetMapping("/{cep}")
     public Endereco consultarEndereco(@PathVariable String cep) throws IOException {
+
+
         return ViaCepService.consultarCEP(cep);}
 }
