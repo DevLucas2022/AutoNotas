@@ -5,35 +5,14 @@ public record DadosDetalhamentoAluno (
     String nome,
     String ra,
     String curso,
-    String email,
-    String cep,
-    String logradouro,
-    String complemento,
-    String bairro,
-    String localidade,
-    String uf,
-    String ibge,
-
-    String gia,
-    String ddd,
-    String siafi
+    String email
 ){
     public DadosDetalhamentoAluno(Aluno aluno){
         this(aluno.getId(),
                 aluno.getNome(),
                 aluno.getRa(),
                 aluno.getCurso(),
-                aluno.getEmail(),
-                aluno.getCep(),
-                aluno.getLogradouro(),
-                aluno.getBairro(),
-                aluno.getLocalidade(),
-                aluno.getDdd(),
-                aluno.getGia(),
-                aluno.getIbge(),
-                aluno.getComplemento(),
-                aluno.getUf(),
-                aluno.getSiafi());
+                aluno.getEmail());
     }
 
 }

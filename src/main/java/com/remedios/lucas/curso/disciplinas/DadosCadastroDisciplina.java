@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 
 public record DadosCadastroDisciplina(
         @NotBlank String nome_disciplina,
-        Professor id_professor
+        Long professor
+
 ) {
 }
