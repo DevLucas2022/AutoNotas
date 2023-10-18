@@ -14,32 +14,32 @@ public class Disciplina {
     private Long id_disciplina;
     private String nome_disciplina;
 
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="id_professor",updatable = false,insertable = false)
-    private Professor id_professor;
-
+    @ManyToOne
+    @JoinColumn(name="id_professor")
+    private Professor professor;
+    Long professor_id;
 
     public Disciplina(DadosCadastroDisciplina dados){
         this.nome_disciplina = dados.nome_disciplina();
-        this.id_professor = dados.id_professor();
+        this.professor_id = dados.professor();
     }
 
-    public Disciplina(Long id_disciplina, String nome_disciplina, Professor id_professor) {
+    public Disciplina(Long id_disciplina, String nome_disciplina, Professor professor) {
         this.id_disciplina = id_disciplina;
         this.nome_disciplina = nome_disciplina;
-        this.id_professor = id_professor;
+        this.professor = professor;
     }
 
     public Disciplina() {
+        super();
     }
 
     public void atualizarInformacoes(@Valid DadosAtualizarDisciplina dados){
         if(dados.nome_disciplina()!=null){
             this.nome_disciplina = dados.nome_disciplina();
         }
-        if(dados.id_professor()!=null){
-            this.id_professor = dados.id_professor();
+        if(dados.professor()!=null){
+            this.professor = dados.professor();
         }
     }
 
@@ -51,23 +51,15 @@ public class Disciplina {
         return nome_disciplina;
     }
 
-    public Professor getProfessor() {
-        return id_professor;
+
+    public Professor getProfessor(){
+        return professor;
+    }
+    public void setProfessor(Professor professor){
+        this.professor = professor;
     }
 
-    public Professor getId_professor() {
-        return id_professor;
-    }
-
-    public void setId_disciplina(Long id_disciplina) {
-        this.id_disciplina = id_disciplina;
-    }
-
-    public void setNome_disciplina(String nome_disciplina) {
-        this.nome_disciplina = nome_disciplina;
-    }
-
-    public void setId_professor(Professor id_professor) {
-        this.id_professor = id_professor;
+    public Long getProfessor_id() {
+        return professor_id;
     }
 }

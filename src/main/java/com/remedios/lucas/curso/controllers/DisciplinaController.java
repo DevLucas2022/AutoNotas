@@ -35,6 +35,8 @@ public class DisciplinaController {
     @PostMapping
     public ResponseEntity<DadosDetalhamentoDisciplina> cadastrar(@RequestBody @Valid DadosCadastroDisciplina dados, UriComponentsBuilder uriBuilder){
        var disciplina = new Disciplina(dados);
+
+       System.out.println(disciplina.getId_disciplina());
        repository.save(disciplina);
 
        var uri = uriBuilder.path("/disciplinas/{id_disciplina}").buildAndExpand(disciplina.getId_disciplina()).toUri();

@@ -6,11 +6,11 @@ import jakarta.validation.constraints.NotBlank;
 public record DadosDetalhamentoDisciplina(
          Long id_disciplina,
          String nome_disciplina,
-         Professor id_professor
+         Professor professor
 ) {
     public DadosDetalhamentoDisciplina(Disciplina disciplina){
         this(disciplina.getId_disciplina(),
                 disciplina.getNome_disciplina(),
-                disciplina.getId_professor());
+                disciplina.getProfessor());
     }
 }

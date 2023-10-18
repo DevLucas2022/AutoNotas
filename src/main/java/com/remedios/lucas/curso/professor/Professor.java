@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Table(name = "professores")
 @Entity(name = "professores")
@@ -15,13 +16,12 @@ public class Professor {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_professor;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "id_professor", fetch = FetchType.EAGER)
-    private List<Disciplina>disciplinas;
-
 
     private String nome;
     private LocalDate dataNascimento;
+
+    @OneToMany( mappedBy = "professor", fetch = FetchType.LAZY)
+    private List<Disciplina> disciplinas;
 
     @Column(unique = true)
     private String telefone;
@@ -31,12 +31,8 @@ public class Professor {
 
     private String senha;
 
-
-    public Professor(Long id_professor) {
-        this.id_professor = id_professor;
-    }
-
     public Professor(DadosCadastroProfessor dados){
+        this.id_professor = dados.id_professor();
         this.nome = dados.nome();
         this.dataNascimento = dados.dataNascimento();
         this.telefone = dados.telefone();
@@ -44,9 +40,8 @@ public class Professor {
         this.senha = dados.senha();
     }
 
-    public Professor(Long id_professor, List<Disciplina> disciplinas, String nome, LocalDate dataNascimento, String telefone, String email, String senha) {
+    public Professor(Long id_professor, String nome, LocalDate dataNascimento, String telefone, String email, String senha) {
         this.id_professor = id_professor;
-        this.disciplinas = disciplinas;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.telefone = telefone;
@@ -91,20 +86,12 @@ public class Professor {
         return email;
     }
 
-    public List<Disciplina> getDisciplinas() {
-        return disciplinas;
-    }
-
     public Long getId_professor() {
         return id_professor;
     }
 
     public void setId_professor(Long id_professor) {
         this.id_professor = id_professor;
-    }
-
-    public void setDisciplinas(List<Disciplina> disciplinas) {
-        this.disciplinas = disciplinas;
     }
 
     public void setNome(String nome) {
@@ -126,4 +113,12 @@ public class Professor {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+    public List<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void setDisciplinas(List<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
+    }
+
 }
