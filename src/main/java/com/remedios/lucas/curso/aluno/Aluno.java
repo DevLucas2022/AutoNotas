@@ -2,8 +2,6 @@ package com.remedios.lucas.curso.aluno;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.remedios.lucas.curso.Endereco.Endereco;
-import com.remedios.lucas.curso.professor.DadosAtualizarProfessor;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import java.io.IOException;
@@ -27,15 +25,18 @@ public class  Aluno {
 
     private String senha;
     private String cep;
+    private String logradouro;
 
 
-    public Aluno(Long id, String nome, String curso, String ra, String email, String senha) {
+    public Aluno(Long id, String nome, String curso, String ra, String email, String senha, String cep, String logradouro) {
         this.id = id;
         this.nome = nome;
         this.curso = curso;
         this.ra = ra;
         this.email = email;
         this.senha = senha;
+        this.cep = cep;
+        this.logradouro = logradouro;
     }
 
     public Aluno(DadosCadastroAluno dados){
@@ -45,6 +46,7 @@ public class  Aluno {
         this.ra = dados.ra();
         this.senha = dados.senha();
         this.cep = dados.cep();
+        this.logradouro = dados.logradouro();
     }
 
     public Aluno() {
@@ -62,6 +64,12 @@ public class  Aluno {
         }
         if(dados.ra()!=null){
             this.ra = dados.ra();
+        }
+        if(dados.cep()!=null){
+            this.cep = dados.cep();
+        }
+        if(dados.logradouro()!=null){
+            this.logradouro = dados.logradouro();
         }
     }
     public static Aluno consultarCEP(String cep) throws IOException {
@@ -126,4 +134,19 @@ public class  Aluno {
         this.senha = senha;
     }
 
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getLogradouro() {
+        return logradouro;
+    }
+
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
+    }
 }
