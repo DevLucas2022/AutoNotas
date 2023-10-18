@@ -1,9 +1,8 @@
 package com.remedios.lucas.curso.controllers;
 
+import com.remedios.lucas.curso.Endereco.Endereco;
 import com.remedios.lucas.curso.aluno.*;
-import com.remedios.lucas.curso.professor.DadosAtualizarProfessor;
-import com.remedios.lucas.curso.professor.DadosDetalhamentoProfessor;
-import com.remedios.lucas.curso.professor.DadosListagemProfessor;
+import com.remedios.lucas.curso.aluno.ViaCepService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +10,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
 @RequestMapping("/alunos")
 public class AlunoController {
-
     @Autowired
     private AlunoRepository repository;
 
@@ -45,6 +44,7 @@ public class AlunoController {
     @GetMapping
     public ResponseEntity<List<DadosListagemAluno>> listar(){
         var lista = repository.findAll().stream().map(DadosListagemAluno::new).toList();
+
         return ResponseEntity.ok(lista);
     }
 
@@ -61,7 +61,7 @@ public class AlunoController {
     @GetMapping("/{id}")
     public ResponseEntity<DadosExibirAluno> detalhar(@PathVariable Long id){
         var aluno = repository.getReferenceById(id);
-
         return ResponseEntity.ok(new DadosExibirAluno(aluno));
     }
+
 }
