@@ -1,6 +1,5 @@
 package com.remedios.lucas.curso.aluno;
 
-import com.remedios.lucas.curso.Endereco.Endereco;
 
 public record DadosExibirAluno(
             Long id,
@@ -8,7 +7,8 @@ public record DadosExibirAluno(
             String ra,
             String curso,
             String email,
-            String cep
+            String cep,
+            String logradouro
     ){
         public DadosExibirAluno(Aluno aluno){
             this(aluno.getId(),
@@ -16,7 +16,9 @@ public record DadosExibirAluno(
                     aluno.getRa(),
                     aluno.getCurso(),
                     aluno.getEmail(),
-                    aluno.getCep());
+                    aluno.getCep(),
+                    aluno.getLogradouro()
+            );
         }
 
     }
