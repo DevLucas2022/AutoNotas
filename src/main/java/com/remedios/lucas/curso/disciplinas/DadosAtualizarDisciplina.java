@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 public record DadosAtualizarDisciplina(
         @NotNull Long id_disciplina,
         String nome_disciplina,
-        Professor professor
+        Long id_professor,
+        String nome_professor
 ) {
 }

@@ -2,6 +2,8 @@ package com.remedios.lucas.curso.professor;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.remedios.lucas.curso.disciplinas.Disciplina;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
@@ -10,6 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Table(name = "professores")
 @Entity(name = "professores")
 public class Professor {
@@ -18,10 +21,11 @@ public class Professor {
 
 
     private String nome;
+
+    @JsonIgnore
     private LocalDate dataNascimento;
 
-    @OneToMany( mappedBy = "professor", fetch = FetchType.LAZY)
-    private List<Disciplina> disciplinas;
+
 
     @Column(unique = true)
     private String telefone;
@@ -112,13 +116,6 @@ public class Professor {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-    public List<Disciplina> getDisciplinas() {
-        return disciplinas;
-    }
-
-    public void setDisciplinas(List<Disciplina> disciplinas) {
-        this.disciplinas = disciplinas;
     }
 
 }

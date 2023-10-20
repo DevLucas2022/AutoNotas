@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -33,10 +34,12 @@ public class DisciplinaController {
 
     @CrossOrigin
     @PostMapping
-    public ResponseEntity<DadosDetalhamentoDisciplina> cadastrar(@RequestBody @Valid DadosCadastroDisciplina dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<DadosDetalhamentoDisciplina> cadastrar(@RequestBody @Valid DadosCadastroDisciplina dados, UriComponentsBuilder uriBuilder) throws IOException {
        var disciplina = new Disciplina(dados);
-
-       System.out.println(disciplina.getId_disciplina());
+       Professor professorConsulta = DisciplinaService.consultarProfessor(dados.id_professor());
+       disciplina.setNome_professor(professorConsulta.getNome());
+       disciplina.setNome_disciplina(dados.nome_disciplina());
+       disciplina.setId_professor(professorConsulta.getId_professor());
        repository.save(disciplina);
 
        var uri = uriBuilder.path("/disciplinas/{id_disciplina}").buildAndExpand(disciplina.getId_disciplina()).toUri();
