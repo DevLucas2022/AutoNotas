@@ -9,7 +9,6 @@ public record DadosAtualizarAluno(
         String curso,
         String senha,
         String ra,
-        String cep,
-        String logradouro
+        String cep
         ){
 }

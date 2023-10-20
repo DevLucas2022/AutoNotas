@@ -26,9 +26,12 @@ public class  Aluno {
     private String senha;
     private String cep;
     private String logradouro;
+    private String bairro;
+    private String localidade;
+    private String uf;
 
 
-    public Aluno(Long id, String nome, String curso, String ra, String email, String senha, String cep, String logradouro) {
+    public Aluno(Long id, String nome, String curso, String ra, String email, String senha, String cep, String logradouro,String bairro, String localidade, String uf) {
         this.id = id;
         this.nome = nome;
         this.curso = curso;
@@ -37,6 +40,9 @@ public class  Aluno {
         this.senha = senha;
         this.cep = cep;
         this.logradouro = logradouro;
+        this.bairro = bairro;
+        this.localidade = localidade;
+        this.uf = uf;
     }
 
     public Aluno(DadosCadastroAluno dados){
@@ -46,7 +52,7 @@ public class  Aluno {
         this.ra = dados.ra();
         this.senha = dados.senha();
         this.cep = dados.cep();
-        this.logradouro = dados.logradouro();
+
     }
 
     public Aluno() {
@@ -68,9 +74,7 @@ public class  Aluno {
         if(dados.cep()!=null){
             this.cep = dados.cep();
         }
-        if(dados.logradouro()!=null){
-            this.logradouro = dados.logradouro();
-        }
+
     }
     public static Aluno consultarCEP(String cep) throws IOException {
         URL url = new URL("https://viacep.com.br/ws/" + cep + "/json/");
@@ -148,5 +152,29 @@ public class  Aluno {
 
     public void setLogradouro(String logradouro) {
         this.logradouro = logradouro;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getLocalidade() {
+        return localidade;
+    }
+
+    public void setLocalidade(String localidade) {
+        this.localidade = localidade;
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
     }
 }

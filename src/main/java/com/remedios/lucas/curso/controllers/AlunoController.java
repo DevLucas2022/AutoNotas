@@ -32,8 +32,18 @@ public class AlunoController {
 
     @CrossOrigin
     @PostMapping
-    public ResponseEntity<DadosDetalhamentoAluno> cadastrar(@RequestBody @Valid DadosCadastroAluno dados, UriComponentsBuilder uribuilder){
+    public ResponseEntity<DadosDetalhamentoAluno> cadastrar(@RequestBody @Valid DadosCadastroAluno dados, UriComponentsBuilder uribuilder) throws IOException, IllegalAccessException {
         var aluno = new Aluno(dados);
+
+        Endereco viacep = ViaCepService.consultarCEP(dados.cep());
+        if(viacep==null){
+            throw new IllegalAccessException("CEP Não Cadastrado");}else{
+        aluno.setLogradouro(viacep.getLogradouro());
+        aluno.setBairro(viacep.getBairro());
+        aluno.setLogradouro(viacep.getLogradouro());
+        aluno.setLocalidade(viacep.getLocalidade());
+        aluno.setUf(viacep.getUf());}
+
         repository.save(aluno);
 
         var uri = uribuilder.path("/alunos/{id}").buildAndExpand(aluno.getId()).toUri();
