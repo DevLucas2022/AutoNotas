@@ -28,10 +28,6 @@ public class Endereco {
     public Endereco() {
     }
 
-    public Endereco(String gia, String ddd, String siafi) {
-
-    }
-
     public String getCep() {
         return cep;
     }

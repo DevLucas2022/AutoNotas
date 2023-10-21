@@ -1,6 +1,5 @@
 package com.remedios.lucas.curso.professor;
 
-import com.remedios.lucas.curso.aluno.Aluno;
 
 import java.time.LocalDate;
 

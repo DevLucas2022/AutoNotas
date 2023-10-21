@@ -3,21 +3,19 @@ package com.remedios.lucas.curso.professor;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.remedios.lucas.curso.disciplinas.Disciplina;
+
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Set;
+
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Table(name = "professores")
 @Entity(name = "professores")
 public class Professor {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_professor;
+    private Long idProfessor;
 
 
     private String nome;
@@ -36,7 +34,7 @@ public class Professor {
     private String senha;
 
     public Professor(DadosCadastroProfessor dados){
-        this.id_professor = dados.id_professor();
+        this.idProfessor = dados.idProfessor();
         this.nome = dados.nome();
         this.dataNascimento = dados.dataNascimento();
         this.telefone = dados.telefone();
@@ -44,8 +42,8 @@ public class Professor {
         this.senha = dados.senha();
     }
 
-    public Professor(Long id_professor, String nome, LocalDate dataNascimento, String telefone, String email, String senha) {
-        this.id_professor = id_professor;
+    public Professor(Long idProfessor, String nome, LocalDate dataNascimento, String telefone, String email, String senha) {
+        this.idProfessor = idProfessor;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.telefone = telefone;
@@ -71,7 +69,7 @@ public class Professor {
         }
     }
     public Long getId() {
-        return id_professor;
+        return idProfessor;
     }
 
     public String getNome() {
@@ -90,12 +88,12 @@ public class Professor {
         return email;
     }
 
-    public Long getId_professor() {
-        return id_professor;
+    public Long getIdProfessor() {
+        return idProfessor;
     }
 
-    public void setId_professor(Long id_professor) {
-        this.id_professor = id_professor;
+    public void setIdProfessor(Long idProfessor) {
+        this.idProfessor = idProfessor;
     }
 
     public void setNome(String nome) {

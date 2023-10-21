@@ -9,13 +9,13 @@ import jakarta.validation.Valid;
 public class Disciplina {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_disciplina;
+    private Long idDisciplina;
 
-    private String nome_disciplina;
+    private String nomeDisciplina;
 
-    Long id_professor;
+    Long idProfessor;
 
-    String nome_professor;
+    String nomeProfessor;
 
     String telefone;
 
@@ -23,11 +23,11 @@ public class Disciplina {
         super();
     }
 
-    public Disciplina(Long id_disciplina, String nome_disciplina, Long id_professor, String nome_professor,String telefone) {
-        this.id_disciplina = id_disciplina;
-        this.nome_disciplina = nome_disciplina;
-        this.id_professor = id_professor;
-        this.nome_professor = nome_professor;
+    public Disciplina(Long idDisciplina, String nomeDisciplina, Long idProfessor, String nomeProfessor) {
+        this.idDisciplina = idDisciplina;
+        this.nomeDisciplina = nomeDisciplina;
+        this.idProfessor = idProfessor;
+        this.nomeProfessor = nomeProfessor;
 
     }
 
@@ -36,47 +36,47 @@ public class Disciplina {
 
 
     public void atualizarInformacoes(@Valid DadosAtualizarDisciplina dados){
-        if(dados.nome_disciplina()!=null){
-            this.nome_disciplina = dados.nome_disciplina();
+        if(dados.nomeDisciplina()!=null){
+            this.nomeDisciplina = dados.nomeDisciplina();
         }
-        if(dados.id_professor()!=null){
-            this.id_professor= dados.id_professor();
+        if(dados.idProfessor()!=null){
+            this.idProfessor= dados.idProfessor();
         }
-        if(dados.nome_professor()!=null){
-            this.nome_professor = dados.nome_professor();
+        if(dados.nomeProfessor()!=null){
+            this.nomeProfessor = dados.nomeProfessor();
         }
     }
 
-    public Long getId_disciplina() {
-        return id_disciplina;
+    public Long getIdDisciplina() {
+        return idDisciplina;
     }
 
-    public void setId_disciplina(Long id_disciplina) {
-        this.id_disciplina = id_disciplina;
+    public void setIdDisciplina(Long idDisciplina) {
+        this.idDisciplina = idDisciplina;
     }
 
-    public String getNome_disciplina() {
-        return nome_disciplina;
+    public String getNomeDisciplina() {
+        return nomeDisciplina;
     }
 
-    public void setNome_disciplina(String nome_disciplina) {
-        this.nome_disciplina = nome_disciplina;
+    public void setNomeDisciplina(String nomeDisciplina) {
+        this.nomeDisciplina = nomeDisciplina;
     }
 
-    public Long getId_professor() {
-        return id_professor;
+    public Long getIdProfessor() {
+        return idProfessor;
     }
 
-    public void setId_professor(Long id_professor) {
-        this.id_professor = id_professor;
+    public void setIdProfessor(Long idProfessor) {
+        this.idProfessor = idProfessor;
     }
 
-    public String getNome_professor() {
-        return nome_professor;
+    public String getNomeProfessor() {
+        return nomeProfessor;
     }
 
-    public void setNome_professor(String nome_professor) {
-        this.nome_professor = nome_professor;
+    public void setNomeProfessor(String nomeProfessor) {
+        this.nomeProfessor = nomeProfessor;
     }
 
 }

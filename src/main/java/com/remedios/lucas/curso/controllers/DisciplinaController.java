@@ -1,12 +1,10 @@
 package com.remedios.lucas.curso.controllers;
 
 
-import com.remedios.lucas.curso.aluno.DadosDetalhamentoAluno;
-import com.remedios.lucas.curso.aluno.DadosExibirAluno;
+
 import com.remedios.lucas.curso.disciplinas.*;
 import com.remedios.lucas.curso.professor.Professor;
-import com.remedios.lucas.curso.professor.ProfessorRepository;
-import jakarta.transaction.Transactional;
+
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +24,7 @@ public class DisciplinaController {
     @CrossOrigin
     @PutMapping
     public ResponseEntity<DadosDetalhamentoDisciplina>atualizar(@RequestBody @Valid DadosAtualizarDisciplina dados){
-        var disciplina = repository.getReferenceById(dados.id_disciplina());
+        var disciplina = repository.getReferenceById(dados.idDisciplina());
         disciplina.atualizarInformacoes(dados);
 
         return ResponseEntity.ok(new DadosDetalhamentoDisciplina(disciplina));
@@ -36,13 +34,13 @@ public class DisciplinaController {
     @PostMapping
     public ResponseEntity<DadosDetalhamentoDisciplina> cadastrar(@RequestBody @Valid DadosCadastroDisciplina dados, UriComponentsBuilder uriBuilder) throws IOException {
        var disciplina = new Disciplina(dados);
-       Professor professorConsulta = DisciplinaService.consultarProfessor(dados.id_professor());
-       disciplina.setNome_professor(professorConsulta.getNome());
-       disciplina.setNome_disciplina(dados.nome_disciplina());
-       disciplina.setId_professor(professorConsulta.getId_professor());
+       Professor professorConsulta = DisciplinaService.consultarProfessor(dados.idProfessor());
+       disciplina.setNomeProfessor(professorConsulta.getNome());
+       disciplina.setNomeDisciplina(dados.nomeDisciplina());
+       disciplina.setIdProfessor(professorConsulta.getIdProfessor());
        repository.save(disciplina);
 
-       var uri = uriBuilder.path("/disciplinas/{id_disciplina}").buildAndExpand(disciplina.getId_disciplina()).toUri();
+       var uri = uriBuilder.path("/disciplinas/{id_disciplina}").buildAndExpand(disciplina.getIdDisciplina()).toUri();
         return ResponseEntity.created(uri).body(new DadosDetalhamentoDisciplina(disciplina));
     }
 

@@ -1,7 +1,6 @@
 package com.remedios.lucas.curso.disciplinas;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.remedios.lucas.curso.Endereco.Endereco;
 import com.remedios.lucas.curso.professor.Professor;
 import org.springframework.web.client.RestTemplate;
 
@@ -10,8 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class DisciplinaService {
-    RestTemplate
-            Template = new RestTemplate();
+    RestTemplate template = new RestTemplate();
     public static Professor consultarProfessor(Long id) throws IOException {
         URL url = new URL("http://localhost:8080/professores/" + id);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();

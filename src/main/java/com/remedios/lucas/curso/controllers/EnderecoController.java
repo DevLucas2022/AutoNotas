@@ -1,7 +1,6 @@
 package com.remedios.lucas.curso.controllers;
 
 import com.remedios.lucas.curso.Endereco.Endereco;
-import com.remedios.lucas.curso.aluno.Aluno;
 import com.remedios.lucas.curso.aluno.ViaCepService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
