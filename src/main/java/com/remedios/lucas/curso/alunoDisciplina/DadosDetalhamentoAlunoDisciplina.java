@@ -10,4 +10,15 @@ public record DadosDetalhamentoAlunoDisciplina(
         Long notaAtividade,
         Long media
 ) {
+
+    public DadosDetalhamentoAlunoDisciplina(AlunoDisciplina alunoDisciplina){
+        this(alunoDisciplina.getIdAlunoDisciplina(),
+                alunoDisciplina.getNomeDisciplina(),
+                alunoDisciplina.getNomeProfessor(),
+                alunoDisciplina.getNomeAluno(),
+                alunoDisciplina.getNota1(),
+                alunoDisciplina.getNota2(),
+                alunoDisciplina.getNotaAtividade(),
+                alunoDisciplina.getMedia());
+    }
 }

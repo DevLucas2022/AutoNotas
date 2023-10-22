@@ -1,7 +1,6 @@
 package com.remedios.lucas.curso.alunoDisciplina;
 
 
-import com.remedios.lucas.curso.disciplinas.DadosCadastroDisciplina;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 
@@ -11,24 +10,22 @@ public class AlunoDisciplina {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAlunoDisciplina;
 
-    private Long idAluno;
-    private String nomeAluno;
-    private Long idDisciplina;
-    private String nomeDisciplina;
-    private Long idProfessor;
-    private String nomeProfessor;
-    private Long nota1;
-    private Long nota2;
-    private Long notaAtividade;
-    private Long media;
+    Long idAluno;
+    String nomeAluno;
+    Long idDisciplina;
+    String nomeDisciplina;
+    String nomeProfessor;
+    Long nota1;
+    Long nota2;
+    Long notaAtividade;
+    Long media;
 
-    public AlunoDisciplina(Long idAlunoDisciplina, Long idAluno, String nomeAluno, Long idDisciplina, String nomeDisciplina, Long idProfessor, String nomeProfessor, Long nota1, Long nota2, Long notaAtividade, Long media) {
+    public AlunoDisciplina(Long idAlunoDisciplina, Long idAluno, String nomeAluno, Long idDisciplina, String nomeDisciplina, String nomeProfessor, Long nota1, Long nota2, Long notaAtividade, Long media) {
         this.idAlunoDisciplina = idAlunoDisciplina;
         this.idAluno = idAluno;
         this.nomeAluno = nomeAluno;
         this.idDisciplina = idDisciplina;
         this.nomeDisciplina = nomeDisciplina;
-        this.idProfessor = idProfessor;
         this.nomeProfessor = nomeProfessor;
         this.nota1 = nota1;
         this.nota2 = nota2;
@@ -39,6 +36,27 @@ public class AlunoDisciplina {
     public AlunoDisciplina() {
     }
 
+    public AlunoDisciplina(@Valid DadosCadastroAlunoDisciplina dados) {
+        super();
+    }
+
+    public void atualizarInformacoes(@Valid DadosAtualizarAlunoDisciplina dados){
+        if(dados.idAluno()!=null){
+            this.idAluno = dados.idAluno();
+        }
+        if(dados.idDisciplina()!=null){
+            this.idDisciplina = dados.idDisciplina();
+        }
+        if(dados.nota1()!=null){
+            this.nota1 = dados.nota1();
+        }
+        if(dados.nota2()!=null){
+            this.nota2 = dados.nota2();
+        }
+        if(dados.notaAtividade()!=null){
+            this.notaAtividade = dados.notaAtividade();
+        }
+    }
     public Long getIdAlunoDisciplina() {
         return idAlunoDisciplina;
     }
@@ -77,14 +95,6 @@ public class AlunoDisciplina {
 
     public void setNomeDisciplina(String nomeDisciplina) {
         this.nomeDisciplina = nomeDisciplina;
-    }
-
-    public Long getIdProfessor() {
-        return idProfessor;
-    }
-
-    public void setIdProfessor(Long idProfessor) {
-        this.idProfessor = idProfessor;
     }
 
     public String getNomeProfessor() {
