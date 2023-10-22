@@ -13,11 +13,10 @@ public class Disciplina {
 
     private String nomeDisciplina;
 
+    @Transient
     Long idProfessor;
 
     String nomeProfessor;
-
-    String telefone;
 
     public Disciplina(@Valid DadosCadastroDisciplina dados) {
         super();
