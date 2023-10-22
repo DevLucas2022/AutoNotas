@@ -8,6 +8,7 @@ public record DadosAtualizarAluno(
         String email,
         String curso,
         String senha,
-        String ra
+        String ra,
+        String cep
         ){
 }
