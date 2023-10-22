@@ -7,11 +7,14 @@ import jakarta.validation.Valid;
 @Table(name="alunoDisciplinas")
 @Entity(name="alunoDisciplinas")
 public class AlunoDisciplina {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idAlunoDisciplina;
 
+    @Transient
     Long idAluno;
+
     String nomeAluno;
+    @Transient
     Long idDisciplina;
     String nomeDisciplina;
     String nomeProfessor;
