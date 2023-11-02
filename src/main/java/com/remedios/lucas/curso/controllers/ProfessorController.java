@@ -1,10 +1,13 @@
 package com.remedios.lucas.curso.controllers;
 
 import com.remedios.lucas.curso.professor.*;
+import com.remedios.lucas.curso.usuarios.Usuario;
+import com.remedios.lucas.curso.usuarios.UsuarioRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -17,13 +20,21 @@ public class ProfessorController {
     @Autowired
     private ProfessorRepository repository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
     @CrossOrigin
     @PostMapping
     @Transactional
     public ResponseEntity<DadosDetalhamentoProfessor> cadastrar(@RequestBody @Valid DadosCadastroProfessor dados, UriComponentsBuilder uriBuilder){
         var professor = new Professor(dados);
+        Usuario usuario = new Usuario();
+        usuario.setLogin(dados.email());
+        usuario.setSenha(passwordEncoder.encode(dados.senha()));
+        usuario.setFuncao("Professor");
         repository.save(professor);
-
+        usuarioRepository.save(usuario);
         var uri = uriBuilder.path("/professores/{id}").buildAndExpand(professor.getId()).toUri();
         return ResponseEntity.created(uri).body(new DadosDetalhamentoProfessor(professor));
     }
