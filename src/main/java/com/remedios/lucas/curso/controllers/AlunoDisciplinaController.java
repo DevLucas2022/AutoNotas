@@ -24,10 +24,25 @@ public class AlunoDisciplinaController {
     @CrossOrigin
     @PutMapping
     @Transactional
-    public ResponseEntity<DadosDetalhamentoAlunoDisciplina> atualizar(@RequestBody @Valid DadosAtualizarAlunoDisciplina dados){
+    public ResponseEntity<DadosDetalhamentoAlunoDisciplina> atualizar(@RequestBody @Valid DadosAtualizarAlunoDisciplina dados) throws IOException, IllegalAccessException {
         var alunoDisciplina = repository.getReferenceById(dados.idAlunoDisciplina());
-        alunoDisciplina.atualizarInformacoes(dados);
+        Aluno aluno = AlunoDisciplinaService.consultarAluno(dados.idAluno());
+        Disciplina disciplina = AlunoDisciplinaService.consultarDisciplinaProfessor(dados.idDisciplina());
+        if(aluno==null){
+            throw new IllegalAccessException("Aluno não cadastrado ou ID incorreto");
+        }else if(disciplina==null){
+            throw new IllegalAccessException("Disciplina não cadastrada ou ID incorreto ");
+        }else {
+            alunoDisciplina.setNomeAluno(aluno.getNome());
+            alunoDisciplina.setNomeDisciplina(disciplina.getNomeDisciplina());
+            alunoDisciplina.setNomeProfessor(disciplina.getNomeProfessor());}
 
+        alunoDisciplina.setNota1(dados.nota1());
+        alunoDisciplina.setNota2(dados.nota2());
+        alunoDisciplina.setNotaAtividade(dados.notaAtividade());
+        alunoDisciplina.setMedia(dados.media());
+
+        repository.save(alunoDisciplina);
         return ResponseEntity.ok(new DadosDetalhamentoAlunoDisciplina(alunoDisciplina));
     }
 
@@ -40,7 +55,7 @@ public class AlunoDisciplinaController {
         Disciplina disciplina = AlunoDisciplinaService.consultarDisciplinaProfessor(dados.idDisciplina());
 
        if(aluno==null){
-            throw new IllegalAccessException("Aluno não cadastrada ou ID incorreto");
+            throw new IllegalAccessException("Aluno não cadastrado ou ID incorreto");
         }else if(disciplina==null){
             throw new IllegalAccessException("Disciplina não cadastrada ou ID incorreto ");
         }else {
@@ -67,16 +82,16 @@ public class AlunoDisciplinaController {
     }
     @CrossOrigin
     @DeleteMapping("/{id_alunodisciplina}")
-    public ResponseEntity<Void> excluir(@PathVariable Long id_alunodisciplina)
+    public ResponseEntity<Void> excluir(@PathVariable Long idAlunodisciplina)
     {
-        repository.deleteById(id_alunodisciplina);
+        repository.deleteById(idAlunodisciplina);
         return ResponseEntity.noContent().build();
     }
 
     @CrossOrigin
-    @GetMapping("/{id_alunodisciplina}")
-    public  ResponseEntity<DadosDetalhamentoAlunoDisciplina> detalhar(@PathVariable Long id_alunodisciplina){
-        var alunoDisciplina = repository.getReferenceById(id_alunodisciplina);
+    @GetMapping("/{idAlunodisciplina}")
+    public  ResponseEntity<DadosDetalhamentoAlunoDisciplina> detalhar(@PathVariable Long idAlunodisciplina){
+        var alunoDisciplina = repository.getReferenceById(idAlunodisciplina);
         return ResponseEntity.ok(new DadosDetalhamentoAlunoDisciplina(alunoDisciplina));
     }
 }
