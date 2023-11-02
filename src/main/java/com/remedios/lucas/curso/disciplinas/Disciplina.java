@@ -41,9 +41,6 @@ public class Disciplina {
         if(dados.idProfessor()!=null){
             this.idProfessor= dados.idProfessor();
         }
-        if(dados.nomeProfessor()!=null){
-            this.nomeProfessor = dados.nomeProfessor();
-        }
     }
 
     public Long getIdDisciplina() {

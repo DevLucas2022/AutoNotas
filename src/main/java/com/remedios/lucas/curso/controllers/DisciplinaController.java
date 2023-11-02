@@ -23,10 +23,13 @@ public class DisciplinaController {
 
     @CrossOrigin
     @PutMapping
-    public ResponseEntity<DadosDetalhamentoDisciplina>atualizar(@RequestBody @Valid DadosAtualizarDisciplina dados){
+    public ResponseEntity<DadosDetalhamentoDisciplina>atualizar(@RequestBody @Valid DadosAtualizarDisciplina dados) throws IOException {
         var disciplina = repository.getReferenceById(dados.idDisciplina());
-        disciplina.atualizarInformacoes(dados);
-
+        Professor professorConsulta = DisciplinaService.consultarProfessor(dados.idProfessor());
+        disciplina.setNomeProfessor(professorConsulta.getNome());
+        disciplina.setNomeDisciplina(dados.nomeDisciplina());
+        disciplina.setIdProfessor(professorConsulta.getIdProfessor());
+        repository.save(disciplina);
         return ResponseEntity.ok(new DadosDetalhamentoDisciplina(disciplina));
     }
 
