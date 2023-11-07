@@ -14,7 +14,7 @@ public class AlunoDisciplina {
     Long idAluno;
 
     String nomeAluno;
-    @Transient
+
     Long idDisciplina;
     String nomeDisciplina;
     String nomeProfessor;

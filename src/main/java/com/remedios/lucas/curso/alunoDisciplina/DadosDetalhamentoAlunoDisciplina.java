@@ -2,6 +2,8 @@ package com.remedios.lucas.curso.alunoDisciplina;
 
 public record DadosDetalhamentoAlunoDisciplina(
         Long idAlunoDisciplina,
+
+        Long idDisciplina,
         String nomeDisciplina,
         String nomeProfessor,
         String nomeAluno,
@@ -13,6 +15,7 @@ public record DadosDetalhamentoAlunoDisciplina(
 
     public DadosDetalhamentoAlunoDisciplina(AlunoDisciplina alunoDisciplina){
         this(alunoDisciplina.getIdAlunoDisciplina(),
+                alunoDisciplina.getIdDisciplina(),
                 alunoDisciplina.getNomeDisciplina(),
                 alunoDisciplina.getNomeProfessor(),
                 alunoDisciplina.getNomeAluno(),

@@ -16,6 +16,7 @@ public class Disciplina {
     @Transient
     Long idProfessor;
 
+
     String nomeProfessor;
 
     public Disciplina(@Valid DadosCadastroDisciplina dados) {
