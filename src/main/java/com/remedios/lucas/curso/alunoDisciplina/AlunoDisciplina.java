@@ -10,7 +10,6 @@ public class AlunoDisciplina {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idAlunoDisciplina;
 
-    @Transient
     Long idAluno;
 
     String nomeAluno;

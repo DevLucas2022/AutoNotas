@@ -37,6 +37,7 @@ public class AlunoDisciplinaController {
             alunoDisciplina.setNomeDisciplina(disciplina.getNomeDisciplina());
             alunoDisciplina.setNomeProfessor(disciplina.getNomeProfessor());}
 
+        alunoDisciplina.setIdAluno(dados.idAluno());
         alunoDisciplina.setIdDisciplina(dados.idDisciplina());
         alunoDisciplina.setNota1(dados.nota1());
         alunoDisciplina.setNota2(dados.nota2());

@@ -13,7 +13,6 @@ public class Disciplina {
 
     private String nomeDisciplina;
 
-    @Transient
     Long idProfessor;
 
 
