@@ -40,7 +40,7 @@ public class DisciplinaController {
        Professor professorConsulta = DisciplinaService.consultarProfessor(dados.idProfessor());
        disciplina.setNomeProfessor(professorConsulta.getNome());
        disciplina.setNomeDisciplina(dados.nomeDisciplina());
-       disciplina.setIdProfessor(professorConsulta.getIdProfessor());
+       disciplina.setIdProfessor(dados.idProfessor());
        repository.save(disciplina);
 
        var uri = uriBuilder.path("/disciplinas/{id_disciplina}").buildAndExpand(disciplina.getIdDisciplina()).toUri();
