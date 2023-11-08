@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ProfessorRepository extends JpaRepository<Professor,Long> {
     List<Professor> findAll();
+    List<Professor> findByEmailAndSenha(String email, String senha);
+
 }

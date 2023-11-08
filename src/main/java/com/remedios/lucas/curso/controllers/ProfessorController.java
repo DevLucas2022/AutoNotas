@@ -55,6 +55,12 @@ public class ProfessorController {
     }
 
     @CrossOrigin
+    @PostMapping("/login/{email}/{senha}")
+    public ResponseEntity<ProfessorLogin> logar(@PathVariable String email, String senha){
+        List<Professor> user = repository.findByEmailAndSenha(email, senha);
+        return ResponseEntity.ok(new ProfessorLogin((Professor) user));
+    }
+    @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity<DadosDetalhamentoProfessor> detalhar(@PathVariable Long id){
         var professor = repository.getReferenceById(id);
