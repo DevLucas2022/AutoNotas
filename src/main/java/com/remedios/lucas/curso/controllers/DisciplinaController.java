@@ -26,7 +26,7 @@ public class DisciplinaController {
     public ResponseEntity<DadosDetalhamentoDisciplina>atualizar(@RequestBody @Valid DadosAtualizarDisciplina dados) throws IOException {
         var disciplina = repository.getReferenceById(dados.idDisciplina());
         Professor professorConsulta = DisciplinaService.consultarProfessor(dados.idProfessor());
-        disciplina.setIdProfessor(professorConsulta.getIdProfessor());
+        disciplina.setIdProfessor(dados.idProfessor());
         disciplina.setNomeProfessor(professorConsulta.getNome());
         disciplina.setNomeDisciplina(dados.nomeDisciplina());
         repository.save(disciplina);
