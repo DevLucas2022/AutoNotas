@@ -61,10 +61,8 @@ public class ProfessorController {
     @CrossOrigin
     @PostMapping("/login")
     public ResponseEntity<Long> logar(@RequestBody Professor loginProfessor){
-        //Professor professor = professorService.authenticate(email, senha);
         String email = loginProfessor.getEmail();
         String senha = loginProfessor.getSenha();
-        String nome = loginProfessor.getNome();
 
         Professor professor = professorService.authenticate(email, senha);
 
@@ -73,6 +71,7 @@ public class ProfessorController {
         }
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
+
     @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity<DadosDetalhamentoProfessor> detalhar(@PathVariable Long id){
