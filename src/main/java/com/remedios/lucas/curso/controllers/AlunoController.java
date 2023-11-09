@@ -6,6 +6,7 @@ import com.remedios.lucas.curso.aluno.ViaCepService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -18,6 +19,8 @@ import java.util.List;
 public class AlunoController {
     @Autowired
     private AlunoRepository repository;
+    @Autowired
+    private AlunoService alunoService;
 
 
     @CrossOrigin
@@ -65,6 +68,20 @@ public class AlunoController {
         repository.deleteById(id);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @CrossOrigin
+    @PostMapping("/login")
+    public ResponseEntity<Long> logar(@RequestBody Aluno loginAluno){
+        String email = loginAluno.getEmail();
+        String senha = loginAluno.getSenha();
+
+        Aluno aluno = alunoService.authenticate(email, senha);
+
+        if(aluno != null){
+            return new ResponseEntity<>(aluno.getId(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 
     @CrossOrigin

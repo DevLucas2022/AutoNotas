@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface AlunoRepository extends JpaRepository<Aluno,Long>{
     List<Aluno> findAll();
+    Aluno findByEmail(String email);
 }
