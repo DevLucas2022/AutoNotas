@@ -65,6 +65,7 @@ public class AlunoDisciplinaController {
             alunoDisciplina.setNomeDisciplina(disciplina.getNomeDisciplina());
             alunoDisciplina.setNomeProfessor(disciplina.getNomeProfessor());}
 
+        alunoDisciplina.setIdAluno(dados.idAluno());
         alunoDisciplina.setIdDisciplina(dados.idDisciplina());
         alunoDisciplina.setNota1(dados.nota1());
         alunoDisciplina.setNota2(dados.nota2());
@@ -92,9 +93,15 @@ public class AlunoDisciplinaController {
     }
 
     @CrossOrigin
-    @GetMapping("/{idAlunodisciplina}")
-    public  ResponseEntity<DadosDetalhamentoAlunoDisciplina> detalhar(@PathVariable Long idAlunodisciplina){
-        var alunoDisciplina = repository.getReferenceById(idAlunodisciplina);
-        return ResponseEntity.ok(new DadosDetalhamentoAlunoDisciplina(alunoDisciplina));
+    @GetMapping("/aluno/{idAlunodisciplina}")
+    public  ResponseEntity<List<DadosDetalhamentoAlunoDisciplina>> detalharIdAluno(@PathVariable Long idAlunodisciplina){
+        var alunoDisciplina = repository.findAllByIdAluno(idAlunodisciplina).stream().map(DadosDetalhamentoAlunoDisciplina::new).toList();
+        return ResponseEntity.ok(alunoDisciplina);
+    }
+    @CrossOrigin
+    @GetMapping("/disciplina/{idDisciplina}")
+    public  ResponseEntity<List<DadosDetalhamentoAlunoDisciplina>> detalharIdDisciplina(@PathVariable Long idDisciplina){
+        var alunoDisciplina = repository.findAllByIdDisciplina(idDisciplina).stream().map(DadosDetalhamentoAlunoDisciplina::new).toList();
+        return ResponseEntity.ok(alunoDisciplina);
     }
 }
