@@ -7,10 +7,10 @@ public record DadosDetalhamentoAlunoDisciplina(
         String nomeDisciplina,
         String nomeProfessor,
         String nomeAluno,
-        Long nota1,
-        Long nota2,
-        Long notaAtividade,
-        Long media
+        Double nota1,
+        Double nota2,
+        Double notaAtividade,
+        Double media
 ) {
 
     public DadosDetalhamentoAlunoDisciplina(AlunoDisciplina alunoDisciplina){

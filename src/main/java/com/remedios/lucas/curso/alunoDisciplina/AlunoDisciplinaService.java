@@ -35,4 +35,8 @@ public class AlunoDisciplinaService {
         }
         return null;
     }
+
+    public static Double calcularMedia(Double nota1, Double nota2, Double notaAtividade){
+        return (nota1 + nota2 + notaAtividade) / 3;
+    }
 }

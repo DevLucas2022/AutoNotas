@@ -55,7 +55,8 @@ public class AlunoDisciplinaController {
 
         Aluno aluno = AlunoDisciplinaService.consultarAluno(dados.idAluno());
         Disciplina disciplina = AlunoDisciplinaService.consultarDisciplinaProfessor(dados.idDisciplina());
-
+        var calcMedia = AlunoDisciplinaService.calcularMedia(dados.nota1(),dados.nota2(),dados.notaAtividade());
+        System.out.println(calcMedia);
        if(aluno==null){
             throw new IllegalAccessException("Aluno não cadastrado ou ID incorreto");
         }else if(disciplina==null){
@@ -70,7 +71,9 @@ public class AlunoDisciplinaController {
         alunoDisciplina.setNota1(dados.nota1());
         alunoDisciplina.setNota2(dados.nota2());
         alunoDisciplina.setNotaAtividade(dados.notaAtividade());
-        alunoDisciplina.setMedia(dados.media());
+
+
+        alunoDisciplina.setMedia(calcMedia);
 
         repository.save(alunoDisciplina);
         var uri = uriBuilder.path("alunosDisciplinas/{id_alunodisciplina}").buildAndExpand(alunoDisciplina.getIdAlunoDisciplina()).toUri();

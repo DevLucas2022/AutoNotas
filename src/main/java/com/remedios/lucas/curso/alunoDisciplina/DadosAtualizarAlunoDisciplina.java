@@ -6,9 +6,9 @@ public record DadosAtualizarAlunoDisciplina(
         @NotNull Long idAlunoDisciplina,
         Long idAluno,
         Long idDisciplina,
-        Long nota1,
-        Long nota2,
-        Long notaAtividade,
-        Long media
+        Double nota1,
+        Double nota2,
+        Double notaAtividade,
+        Double media
 ) {
 }
