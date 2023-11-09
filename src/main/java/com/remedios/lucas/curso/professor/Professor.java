@@ -92,6 +92,8 @@ public class Professor {
         return idProfessor;
     }
 
+    public String getSenha(){return senha;}
+
     public void setIdProfessor(Long idProfessor) {
         this.idProfessor = idProfessor;
     }

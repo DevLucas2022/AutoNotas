@@ -4,18 +4,22 @@ import com.remedios.lucas.curso.professor.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/professores")
 public class ProfessorController {
 
     @Autowired
     private ProfessorRepository repository;
+    @Autowired
+    private ProfessorService professorService;
 
     @CrossOrigin
     @PostMapping
@@ -54,6 +58,21 @@ public class ProfessorController {
         return ResponseEntity.noContent().build();
     }
 
+    @CrossOrigin
+    @PostMapping("/login")
+    public ResponseEntity<Long> logar(@RequestBody Professor loginProfessor){
+        //Professor professor = professorService.authenticate(email, senha);
+        String email = loginProfessor.getEmail();
+        String senha = loginProfessor.getSenha();
+        String nome = loginProfessor.getNome();
+
+        Professor professor = professorService.authenticate(email, senha);
+
+        if(professor != null){
+            return new ResponseEntity<>(professor.getIdProfessor(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    }
     @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity<DadosDetalhamentoProfessor> detalhar(@PathVariable Long id){
