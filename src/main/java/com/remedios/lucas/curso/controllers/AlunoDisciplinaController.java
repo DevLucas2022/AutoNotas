@@ -56,7 +56,7 @@ public class AlunoDisciplinaController {
         Aluno aluno = AlunoDisciplinaService.consultarAluno(dados.idAluno());
         Disciplina disciplina = AlunoDisciplinaService.consultarDisciplinaProfessor(dados.idDisciplina());
         var calcMedia = AlunoDisciplinaService.calcularMedia(dados.nota1(),dados.nota2(),dados.notaAtividade());
-        System.out.println(calcMedia);
+
        if(aluno==null){
             throw new IllegalAccessException("Aluno não cadastrado ou ID incorreto");
         }else if(disciplina==null){
@@ -96,13 +96,13 @@ public class AlunoDisciplinaController {
     }
 
     @CrossOrigin
-    @GetMapping("/aluno/{idAlunodisciplina}")
+    @GetMapping("/aluno/disciplina/{idAlunodisciplina}")
     public  ResponseEntity<List<DadosDetalhamentoAlunoDisciplina>> detalharIdAluno(@PathVariable Long idAlunodisciplina){
         var alunoDisciplina = repository.findAllByIdAluno(idAlunodisciplina).stream().map(DadosDetalhamentoAlunoDisciplina::new).toList();
         return ResponseEntity.ok(alunoDisciplina);
     }
     @CrossOrigin
-    @GetMapping("/disciplina/{idDisciplina}")
+    @GetMapping("/professor/disciplina/{idDisciplina}")
     public  ResponseEntity<List<DadosDetalhamentoAlunoDisciplina>> detalharIdDisciplina(@PathVariable Long idDisciplina){
         var alunoDisciplina = repository.findAllByIdDisciplina(idDisciplina).stream().map(DadosDetalhamentoAlunoDisciplina::new).toList();
         return ResponseEntity.ok(alunoDisciplina);

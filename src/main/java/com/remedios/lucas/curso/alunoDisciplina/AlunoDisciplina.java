@@ -16,6 +16,7 @@ public class AlunoDisciplina {
 
     Long idDisciplina;
     String nomeDisciplina;
+
     String nomeProfessor;
      Double nota1;
      Double nota2;
@@ -40,6 +41,10 @@ public class AlunoDisciplina {
 
     public AlunoDisciplina(@Valid DadosCadastroAlunoDisciplina dados) {
         super();
+    }
+
+    public AlunoDisciplina(Long idAlunoDisciplina) {
+        this.idAlunoDisciplina = idAlunoDisciplina;
     }
 
     public void atualizarInformacoes(@Valid DadosAtualizarAlunoDisciplina dados){
@@ -138,4 +143,8 @@ public class AlunoDisciplina {
     public void setMedia(Double media) {
         this.media = media;
     }
+
+
+
+
 }

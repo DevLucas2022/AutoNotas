@@ -2,6 +2,7 @@ package com.remedios.lucas.curso.controllers;
 
 
 
+import com.remedios.lucas.curso.alunoDisciplina.DadosDetalhamentoAlunoDisciplina;
 import com.remedios.lucas.curso.disciplinas.*;
 import com.remedios.lucas.curso.professor.Professor;
 
@@ -67,6 +68,13 @@ public class DisciplinaController {
         var disciplina = repository.getReferenceById(id);
 
         return ResponseEntity.ok(new DadosDetalhamentoDisciplina(disciplina));
+    }
+
+    @CrossOrigin
+    @GetMapping("/professor/disciplina/{idProfessor}")
+    public  ResponseEntity<List<DadosDetalhamentoDisciplina>> detalharIdDisciplina(@PathVariable Long idProfessor){
+        var alunoDisciplina = repository.findAllByIdProfessor(idProfessor).stream().map(DadosDetalhamentoDisciplina::new).toList();
+        return ResponseEntity.ok(alunoDisciplina);
     }
 
 }
