@@ -75,7 +75,6 @@ public class AlunoDisciplinaController {
         alunoDisciplina.setNota2(dados.nota2());
         alunoDisciplina.setNotaAtividade(dados.notaAtividade());
         alunoDisciplina.setFeedback(dados.feedback());
-
         alunoDisciplina.setMedia(calcMedia);
 
         repository.save(alunoDisciplina);
