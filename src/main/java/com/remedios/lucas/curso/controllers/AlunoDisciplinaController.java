@@ -43,6 +43,7 @@ public class AlunoDisciplinaController {
         alunoDisciplina.setNota2(dados.nota2());
         alunoDisciplina.setNotaAtividade(dados.notaAtividade());
         alunoDisciplina.setMedia(dados.media());
+        alunoDisciplina.setFeedback(dados.feedback());
 
         repository.save(alunoDisciplina);
         return ResponseEntity.ok(new DadosDetalhamentoAlunoDisciplina(alunoDisciplina));
@@ -71,7 +72,7 @@ public class AlunoDisciplinaController {
         alunoDisciplina.setNota1(dados.nota1());
         alunoDisciplina.setNota2(dados.nota2());
         alunoDisciplina.setNotaAtividade(dados.notaAtividade());
-
+        alunoDisciplina.setFeedback(dados.feedback());
 
         alunoDisciplina.setMedia(calcMedia);
 

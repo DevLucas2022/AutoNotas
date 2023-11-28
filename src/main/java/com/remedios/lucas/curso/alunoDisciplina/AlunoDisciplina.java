@@ -23,7 +23,9 @@ public class AlunoDisciplina {
     Double notaAtividade;
     Double media;
 
-    public AlunoDisciplina(Long idAlunoDisciplina, Long idAluno, String nomeAluno, Long idDisciplina, String nomeDisciplina, String nomeProfessor, Double nota1, Double nota2, Double notaAtividade, Double media) {
+    String feedback;
+
+    public AlunoDisciplina(Long idAlunoDisciplina, Long idAluno, String nomeAluno, Long idDisciplina, String nomeDisciplina, String nomeProfessor, Double nota1, Double nota2, Double notaAtividade, Double media,String feedback) {
         this.idAlunoDisciplina = idAlunoDisciplina;
         this.idAluno = idAluno;
         this.nomeAluno = nomeAluno;
@@ -34,6 +36,7 @@ public class AlunoDisciplina {
         this.nota2 = nota2;
         this.notaAtividade = notaAtividade;
         this.media = media;
+        this.feedback = feedback;
     }
 
     public AlunoDisciplina() {
@@ -45,6 +48,10 @@ public class AlunoDisciplina {
 
     public AlunoDisciplina(Long idAlunoDisciplina) {
         this.idAlunoDisciplina = idAlunoDisciplina;
+    }
+
+    public AlunoDisciplina(String feedback) {
+        this.feedback = feedback;
     }
 
     public void atualizarInformacoes(@Valid DadosAtualizarAlunoDisciplina dados){
@@ -63,6 +70,7 @@ public class AlunoDisciplina {
         if(dados.notaAtividade()!=null){
             this.notaAtividade = dados.notaAtividade();
         }
+
     }
     public Long getIdAlunoDisciplina() {
         return idAlunoDisciplina;
@@ -145,6 +153,11 @@ public class AlunoDisciplina {
     }
 
 
+    public String getFeedback() {
+        return feedback;
+    }
 
-
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
+    }
 }

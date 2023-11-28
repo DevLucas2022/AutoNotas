@@ -10,6 +10,7 @@ public record DadosAtualizarAlunoDisciplina(
         Double nota1,
         Double nota2,
         Double notaAtividade,
-        Double media
+        Double media,
+        String feedback
 ) {
 }

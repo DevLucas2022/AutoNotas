@@ -10,7 +10,8 @@ public record DadosDetalhamentoAlunoDisciplina(
         Double nota1,
         Double nota2,
         Double notaAtividade,
-        Double media
+        Double media,
+        String feedback
 ) {
 
     public DadosDetalhamentoAlunoDisciplina(AlunoDisciplina alunoDisciplina){
@@ -22,6 +23,7 @@ public record DadosDetalhamentoAlunoDisciplina(
                 alunoDisciplina.getNota1(),
                 alunoDisciplina.getNota2(),
                 alunoDisciplina.getNotaAtividade(),
-                alunoDisciplina.getMedia());
+                alunoDisciplina.getMedia(),
+                alunoDisciplina.getFeedback());
     }
 }
