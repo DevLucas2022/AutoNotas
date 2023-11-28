@@ -4,6 +4,7 @@ public record DadosDetalhamentoAlunoDisciplina(
         Long idAlunoDisciplina,
 
         Long idDisciplina,
+        Long idAluno,
         String nomeDisciplina,
         String nomeProfessor,
         String nomeAluno,
@@ -17,6 +18,7 @@ public record DadosDetalhamentoAlunoDisciplina(
     public DadosDetalhamentoAlunoDisciplina(AlunoDisciplina alunoDisciplina){
         this(alunoDisciplina.getIdAlunoDisciplina(),
                 alunoDisciplina.getIdDisciplina(),
+                alunoDisciplina.getIdAluno(),
                 alunoDisciplina.getNomeDisciplina(),
                 alunoDisciplina.getNomeProfessor(),
                 alunoDisciplina.getNomeAluno(),

@@ -2,8 +2,10 @@ package com.remedios.lucas.curso.controllers;
 
 
 import com.remedios.lucas.curso.aluno.Aluno;
+import com.remedios.lucas.curso.aluno.DadosDetalhamentoAluno;
 import com.remedios.lucas.curso.alunoDisciplina.*;
 import com.remedios.lucas.curso.disciplinas.Disciplina;
+import com.remedios.lucas.curso.professor.DadosDetalhamentoProfessor;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,5 +109,13 @@ public class AlunoDisciplinaController {
     public  ResponseEntity<List<DadosDetalhamentoAlunoDisciplina>> detalharIdDisciplina(@PathVariable Long idDisciplina){
         var alunoDisciplina = repository.findAllByIdDisciplina(idDisciplina).stream().map(DadosDetalhamentoAlunoDisciplina::new).toList();
         return ResponseEntity.ok(alunoDisciplina);
+    }
+
+    @CrossOrigin
+    @GetMapping("/{idAlunoDisciplina}")
+    public ResponseEntity<DadosDetalhamentoAlunoDisciplina> detalhar(@PathVariable Long idAlunoDisciplina){
+        var alunoDisciplina = repository.getReferenceById(idAlunoDisciplina);
+
+        return ResponseEntity.ok(new DadosDetalhamentoAlunoDisciplina(alunoDisciplina));
     }
 }

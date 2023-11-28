@@ -8,5 +8,6 @@ import java.util.List;
 public interface AlunoDisciplinaRepository extends JpaRepository<AlunoDisciplina,Long> {
 
     List<AlunoDisciplina> findAllByIdDisciplina(Long idDisciplina);
+    List<AlunoDisciplina> findByIdAlunoDisciplina(Long idAlunoDisciplina);
     List<AlunoDisciplina> findAllByIdAluno(Long idAluno);
 }
