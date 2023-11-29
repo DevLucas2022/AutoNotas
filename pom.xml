@@ -14,12 +14,7 @@
 	<name>Curso</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<maven.compiler.source>8</maven.compiler.source>
-		<maven.compiler.target>8</maven.compiler.target>
-		<!--  Use the release flag only if you are using Java 9+  -->
-	<maven.compiler.release>8</maven.compiler.release>
-		<!-- verbose is useful for debugging purposes -->
-		<maven.compiler.verbose>true</maven.compiler.verbose>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -68,23 +63,7 @@
 	</dependencies>
 
 	<build>
-
 		<plugins>
-			<plugin>
-				<groupId>com.heroku.sdk</groupId>
-				<artifactId>heroku-maven-plugin</artifactId>
-				<version>3.0.7</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-					<verbose>true</verbose>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
